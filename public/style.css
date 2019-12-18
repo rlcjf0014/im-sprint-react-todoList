@@ -1,0 +1,108 @@
+@import url("http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
+
+
+.start {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 20%;
+  margin-right: 20%;
+  align-content: center;
+}
+
+.main {
+  margin-top: 100px;
+  background: #f1f1f1;
+  transform: translateX(-4%);
+  display:flex;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+  border-style: groove;
+  padding: 30px;
+}
+
+
+.col-md-7 {
+  display: inline-block;
+  border-right-style: dotted;
+  border-left-style: dotted;
+  padding-left: 100px;
+  padding-right: 100px;
+  
+}
+
+.col-md-5 {
+  float: right;
+}
+
+.navbar {
+  background: #fff;
+  margin-bottom: 20px;
+  float: left;
+}
+
+.navbar img {
+  height: 40px;
+  width: 50px;
+}
+
+.search-bar {
+  border-radius: 1px;
+  background: #fff;
+}
+
+.search-bar .form-control {
+  border-radius: 2px;
+  width: 80%
+}
+.search-bar .btn {
+  border-radius: 2px;
+  border-color: #d3d3d3;
+  background: #f8f8f8;
+  width: 20%;
+  margin-left: -1px;
+}
+
+.search-bar .btn:hover {
+  border-color: #c6c6c6;
+  background: #f0f0f0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.10);
+}
+
+.category-list-body {
+  display:flex;
+  justify-content: space-evenly;
+  font-style: normal;
+  vertical-align: middle;
+}
+
+.numberofalarm{
+  font-size:medium;
+  font-style: oblique;
+  color:green;
+}
+
+.isComplete{
+  font-size: large;
+  font-style: italic;
+  color: blue;
+}
+
+.category-list-entry-detail{
+  font-size: large;
+  font-style: normal;
+}
+
+.toDo-list-entry-detail{
+  font-size: medium;
+  color: black;
+  font-weight: lighter;
+  font-style: normal;
+}
+
+.categoryButton{
+  font-size: large;
+  font-style: initial;
+  padding: 2px;
+}
