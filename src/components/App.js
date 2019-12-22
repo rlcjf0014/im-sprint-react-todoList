@@ -26,7 +26,7 @@ class App extends React.Component {
       isSearching: false
     };
   }
-
+ //*서치가 끝난 후 돌아가는 버튼을 눌렀을 때 실행되는 함수
   goBacksearch() {
     this.setState({
       isFilter: false,
@@ -34,9 +34,12 @@ class App extends React.Component {
       isSearching: false
     });
   }
-
+//*검색용 함수. 검색어를 입력하고 버튼을 누르면 실행. 
   search(item) {
-    var result = [];
+    if (this.state.isSearching) {
+      return;
+    }
+    const result = [];
     const replaced = this.state.totalData
       .concat(this.state.todoList)
       .map(element => JSON.parse(element));
@@ -53,9 +56,10 @@ class App extends React.Component {
       isSearching: !this.state.isSearching
     });
   }
-
+  
+  //*카테고리 초기화 용
   emptyCategory() {
-    if (this.state.isSearching){
+    if (this.state.isSearching) {
       return;
     }
     this.setState(
@@ -67,8 +71,9 @@ class App extends React.Component {
     );
   }
 
+  //*해야 할 알림 목록들 초기화 용 함수
   emptylist() {
-    if (this.state.isSearching){
+    if (this.state.isSearching) {
       return;
     }
     this.setState({
@@ -76,8 +81,9 @@ class App extends React.Component {
     });
   }
 
+  //*카테고리 제거용 버튼을 누르면 실행되는 함수
   removeCategory(item) {
-    if (this.state.isSearching){
+    if (this.state.isSearching) {
       return;
     }
     var result = [];
@@ -98,21 +104,29 @@ class App extends React.Component {
       () => {
         if (this.state.categoryName.length === 0) {
           this.setState({
-            categoryList: "뭐 좀 하세요~~"
+            categoryList: "뭐 좀 하세요~~",
+            todoList: [],
+            totalData: []
           });
-        } else {
+        } 
+        if (this.state.categoryList !== item){
+          return;
+        }
+        else {
+          const next = this.state.categoryName[this.state.categoryName.length - 1]
+          const newResult = this.state.totalData.map(element => JSON.parse(element)).filter(data => data.category === next).map(element => JSON.stringify(element))
           this.setState({
-            categoryList: this.state.categoryName[
-              this.state.categoryName.length - 1
-            ]
-          });
+            categoryList: next,
+            todoList: newResult
+          })
         }
       }
     );
   }
 
+  //*카테고리를 선택하면 실행되는 함수
   selectCategory(item) {
-    if (this.state.isSearching){
+    if (this.state.isSearching) {
       return;
     }
     if (item === this.state.categoryList) {
@@ -135,8 +149,9 @@ class App extends React.Component {
     });
   }
 
+  //*카테고리를 추가하는 함수
   addCategory(item) {
-    if (this.state.isSearching){
+    if (this.state.isSearching) {
       return;
     }
     if (!this.state.categoryName.includes(item)) {
@@ -151,9 +166,10 @@ class App extends React.Component {
     }
     return;
   }
-
+  
+  //*목록을 추가하는 함수
   addList(item) {
-    if (this.state.isSearching){
+    if (this.state.isSearching) {
       return;
     }
     this.setState({
@@ -161,6 +177,7 @@ class App extends React.Component {
     });
   }
 
+  //* 누르면 완료 됐는지 안됐는지 보여주는 줄처주기 용. 
   handleComplete(e) {
     const replaced = this.state.todoList.map(element => JSON.parse(element));
     for (let element of replaced) {
@@ -178,7 +195,6 @@ class App extends React.Component {
       <div className="start">
         내일 일을 미루지말자
         <div className="main">
-          
           <Nav search={this.search} />
           <div className="col-md-7">
             카테고리

@@ -7,8 +7,6 @@ class CategoryList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
-      done: false,
       appear: false
     };
   }

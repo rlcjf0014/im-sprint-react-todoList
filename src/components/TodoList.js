@@ -12,14 +12,15 @@ class TodoList extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   
-
+ //*엔터를 누르느냐, Escape를 누르느냐에 따라 실행되는 내용이 다르다. 
+ //? 엔터는 추가, escape은 아무것도 안한다. 
   handleKeyPress(e) {
     if (e.key === "Escape") {
       document.querySelector(".newtoDolist").value = null;
       return;
     }
     if (e.key === "Enter") {
-      //엔터일때
+      //!엔터일때
       const value = document.querySelector(".newtoDolist").value;
       if (value.length === 0) {
         window.alert("내용을 입력하세요");
@@ -33,6 +34,7 @@ class TodoList extends React.Component {
     }
   }
 
+  //*새로 작성된 알림을 전체 목록에 추가. 
   handleChange() {
     const value = document.querySelector(".newtoDolist").value;
     this.setState(
@@ -45,6 +47,7 @@ class TodoList extends React.Component {
     if (!this.props.todoList) {
       return <div>내용을 입력해주세요!</div>;
     }
+    //*검색어를 입력해서 해당 내용을 담은 함수만 렌더시키기. 
     if (this.props.isFilter !== false){
       return (
         <div className="toDo-list-whole">
@@ -70,6 +73,7 @@ class TodoList extends React.Component {
         </div>
       )
     }   
+    //!일반 렌더용 
     return (
       <div className="toDo-list-whole">
         <div className="toDo-list media">
